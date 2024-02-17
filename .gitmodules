@@ -1,0 +1,3 @@
+[submodule "Wiki/src/content"]
+	path = Wiki/src/content
+	url = https://github.com/Safe-Corp-Jiva/.github

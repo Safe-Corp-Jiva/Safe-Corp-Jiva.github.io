@@ -1,0 +1,25 @@
+---
+import MarkdownLayout from "../layouts/MarkdownLayout.astro";
+
+// @ts-expect-error
+import { getEntry } from 'astro:content'
+
+const aboutUsEntry = await getEntry('profile', 'readme');
+aboutUsEntry.body = aboutUsEntry.body.split("# Safe Corp Jiva's Wiki\n")[1];
+
+const { Content } = await aboutUsEntry.render();
+---
+
+<MarkdownLayout frontmatter={{title: "About Us"}}>
+  <Content />
+</MarkdownLayout>
+
+<style>
+  blockquote {
+    background-color: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+  }
+
+</style>

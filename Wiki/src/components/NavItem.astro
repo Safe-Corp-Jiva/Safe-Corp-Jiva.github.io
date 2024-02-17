@@ -1,0 +1,26 @@
+---
+// @ts-expect-error
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  name?: string;
+  url: string;
+  icon?: string;
+  title?: string; 
+}
+
+const { name, url, icon, title } = Astro.props;
+---
+
+<li class={"menu-item" + (icon ? " type-icon" : "")}>
+  { title ? (
+      <a href={url} title={title}>
+        { icon ? <Icon name={icon} /> : name}
+      </a>
+    ) : (
+      <a href={url}>
+        { icon ? <Icon name={icon} /> : name}
+      </a>
+    )
+  }
+</li>

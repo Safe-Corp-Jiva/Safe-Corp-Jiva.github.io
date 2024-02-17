@@ -1,26 +1,40 @@
 ---
+// @ts-nocheck
 import Navigation from '../components/Navigation.astro'
+import NavItem from './NavItem.astro'
 import { SkipLinks } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
+
+const routes = [
+  { 
+    name: 'Home', 
+    url: '/',
+  },
+  {
+    name: 'Articles',
+    url: '/articles/'
+  },
+  { 
+    name: 'About', 
+    url: '/about' 
+  },
+  { 
+    name: 'Contact',
+    url: '/contact' 
+  },
+  { 
+    title: 'Go to our GitHub organization',
+    url: 'https://github.com/Safe-Corp-Jiva', 
+    icon: 'ion:logo-github'
+  }
+]
 ---
 
 <header>
   <SkipLinks />
   <Navigation>
-    <li class="menu-item">
-      <a href="/">Home</a>
-    </li>
-    <li class="menu-item">
-      <a href="/articles/">Articles</a>
-    </li>
-    <li class="menu-item">
-      <a href="/contact">Contact</a>
-    </li>
-    <li class="menu-item type-icon">
-      <a href="https://github.com/Safe-Corp-Jiva" title="Go to our GitHub organization">
-        <Icon name="ion:logo-github" />
-      </a>
-    </li>
+    { routes.map(route => (
+      <NavItem {...route} />
+    ))}
   </Navigation>
 </header>
 
