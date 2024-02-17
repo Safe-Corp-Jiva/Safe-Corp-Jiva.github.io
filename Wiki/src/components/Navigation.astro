@@ -31,24 +31,19 @@ import { Image } from 'astro:assets'
 <script>
   // @ts-nocheck
   document.addEventListener('astro:page-load', () => {
-    // variables
     const mainNav = document.querySelector('#main-navigation')
     const mainMenu = mainNav.querySelector('ul')
     const dropdownMenus = [...document.querySelectorAll('.has-dropdown button')]
 
-    // functions
     const setActiveMenuItem = () => {
       const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
       const currenPathname = window.location.pathname
 
       mobileDesktopMenus.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
-
+        
         menuItems.forEach((menuItem) => {
-          if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
-            menuItem.classList.add('is-active')
-            menuItem.setAttribute('aria-current', 'page')
-          } else if (menuItem.textContent === 'Home' && currenPathname === '/') {
+          if (currenPathname === menuItem.pathname || `${currenPathname}/` === menuItem.pathname) {
             menuItem.classList.add('is-active')
             menuItem.setAttribute('aria-current', 'page')
           }
